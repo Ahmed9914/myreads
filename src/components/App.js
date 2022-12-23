@@ -1,5 +1,6 @@
-import "./App.css";
+import "../css/App.css";
 import { useState } from "react";
+//import { getAll } from "../BooksAPI";
 
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
@@ -10,6 +11,7 @@ function App() {
         <div className="search-books">
           <div className="search-books-bar">
             <a
+              href="#"
               className="close-search"
               onClick={() => setShowSearchpage(!showSearchPage)}
             >
