@@ -1,7 +1,6 @@
 import { Book } from "./BooksGrid/Book";
 
 export const BooksGrid = ({ books }) => {
-    console.log(books[books.length-1],books.length)
     return (
         <ol className="books-grid">
             {

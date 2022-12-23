@@ -81,7 +81,7 @@ function App() {
             <h1>MyReads</h1>
       </div>
       {showSearchPage ? (
-        < SearchBooks onSetShowSearchpage={setShowSearchpage}/>
+        < SearchBooks books={books} onSetShowSearchpage={() => setShowSearchpage(false)}/>
       ) : (
         < ListShelves shelves={shelves} onSetShowSearchpage={() => setShowSearchpage(true)} />
       )}
