@@ -1,9 +1,9 @@
 import { BooksGrid } from "../BooksGrid"
 
-export const SearchResults = ({ books }) => {
+export const SearchResults = ({ showingBooks }) => {
     return (
         <div className="search-books-results">
-            < BooksGrid books={books} />
+            < BooksGrid books={showingBooks} />
         </div>
     )
 }

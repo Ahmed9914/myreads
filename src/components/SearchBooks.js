@@ -1,12 +1,12 @@
 import { SearchBar } from "./SearchBooks/SearchBar";
 import { SearchResults } from "./SearchBooks/SearchResults";
 
-export const SearchBooks = ({ books, onSetShowSearchpage }) => {
+export const SearchBooks = ({ showingBooks, onFilterBooks, onSetShowSearchpage }) => {
     
     return (
         <div className="search-books">
-          < SearchBar onSetShowSearchpage={ onSetShowSearchpage } />
-          < SearchResults books={books} />
+          < SearchBar onFilterBooks={onFilterBooks} onSetShowSearchpage={ onSetShowSearchpage } />
+          < SearchResults showingBooks={showingBooks} />
         </div>
     )
 
