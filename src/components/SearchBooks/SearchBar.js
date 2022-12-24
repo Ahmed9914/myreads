@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-export const SearchBar = ({ onFilterBooks, onSetShowSearchpage }) => {
+export const SearchBar = ({ onFilterBooks }) => {
   const [query, setQuery] = useState("");
   const updateQuery = (query) => {
     setQuery(query)
@@ -8,13 +9,12 @@ export const SearchBar = ({ onFilterBooks, onSetShowSearchpage }) => {
   }
   return (
       <div className="search-books-bar">
-          <a
-            href="#"
+          <Link
+            to="/"
             className="close-search"
-            onClick={onSetShowSearchpage}
-          >
+            >
             Close
-          </a>
+          </Link>
           <div className="search-books-input-wrapper">
             <input
               type="text"

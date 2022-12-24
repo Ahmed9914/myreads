@@ -1,15 +1,29 @@
 import { SearchBar } from "./SearchBooks/SearchBar";
 import { SearchResults } from "./SearchBooks/SearchResults";
+import { useState } from "react";
 
-export const SearchBooks = ({ showingBooks, onFilterBooks, onChangeShelf, onSetShowSearchpage }) => {
+export const SearchBooks = ({ books, onChangeShelf }) => {
+    const [showingBooks, setShowingBooks] = useState([]);
     
+    const filterBooks = (query) => {
+    const showingBooks =
+    query.trim() === ""
+      ? []
+      : books.filter((b) =>
+          b.title.toLowerCase().includes(query.toLowerCase())
+        );
+      setShowingBooks(showingBooks);
+    }
+
     return (
         <div className="search-books">
           < SearchBar
-              onFilterBooks={onFilterBooks}
-              onChangeShelf={onChangeShelf}
-              onSetShowSearchpage={ onSetShowSearchpage } />
-          < SearchResults showingBooks={showingBooks} />
+            onFilterBooks={filterBooks}
+             />
+          < SearchResults
+            showingBooks={showingBooks}
+            onChangeShelf={onChangeShelf}
+            />
         </div>
     )
 

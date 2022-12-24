@@ -1,6 +1,7 @@
 import { Shelf } from "./ListShelves/Shelf";
+import { Link } from "react-router-dom";
 
-export const ListShelves = ({ shelves, onChangeShelf, onSetShowSearchpage }) => {
+export const ListShelves = ({ shelves, onChangeShelf }) => {
   return (
     <div className="list-books">
       <div className="list-books-content">
@@ -16,8 +17,11 @@ export const ListShelves = ({ shelves, onChangeShelf, onSetShowSearchpage }) => 
           }
       </div>
       <div className="open-search">
-        <a onClick={onSetShowSearchpage}>Add a book</a>
+        <Link to="/search"  >
+          Add a book
+        </Link>
       </div>
+      
     </div>
 
   )

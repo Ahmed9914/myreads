@@ -2,22 +2,13 @@ import "../css/App.css";
 import { useState, useEffect } from "react";
 import * as BooksAPI from "../BooksAPI";
 import { ListShelves } from "./ListShelves";
+import { Route, Routes } from "react-router-dom";
 import { SearchBooks } from "./SearchBooks";
 
 function App() {
-  const [showSearchPage, setShowSearchpage] = useState(false);
-  const [books, setBooks] = useState([]);
-  const [showingBooks, setShowingBooks] = useState([]);
 
-  const filterBooks = (query) => {
-    const showingBooks =
-    query.trim() === ""
-      ? []
-      : books.filter((b) =>
-          b.title.toLowerCase().includes(query.toLowerCase())
-        );
-      setShowingBooks(showingBooks);
-  }
+  const [books, setBooks] = useState([]);
+  
 
   const changeShelf = (book, shelf) => {
     BooksAPI.update(book, shelf)
@@ -28,7 +19,7 @@ function App() {
         })
       })
       
-    console.log(books);
+    // console.log(books);
     shelves = prepareShelves();
   }
   
@@ -54,23 +45,32 @@ function App() {
  
 
   return (
-    // TODO: replace onSetShowSearchpage with routing
     <div className="app">
       <div className="list-books-title">
             <h1>MyReads</h1>
       </div>
-      {showSearchPage ? (
-        < SearchBooks
-            showingBooks={showingBooks}
-            onFilterBooks={filterBooks}
-            onChangeShelf={changeShelf}
-            onSetShowSearchpage={() => setShowSearchpage(false)} />
-      ) : (
-        < ListShelves
-            shelves={shelves}
-            onChangeShelf={changeShelf}
-            onSetShowSearchpage={() => setShowSearchpage(true)} />
-      )}
+      
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            < ListShelves
+              shelves={shelves}
+              onChangeShelf={changeShelf}/>
+          }
+        />
+        <Route 
+          exact
+          path="/search"
+          element={
+            < SearchBooks
+              books={books}
+              onChangeShelf={changeShelf} />
+          }
+        />
+      </Routes>
+      
     </div>
   );
 }
