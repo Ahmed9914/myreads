@@ -10,13 +10,15 @@ export const SearchBooks = ({ books, onChangeShelf }) => {
       if (query) {
         search(query, 20)
         .then((res) => {
-          console.log(res);
           if (res && !("error" in res)) {
             for (const book of res) {
               for (const existBook of books) {
                 if (book.id === existBook.id) {
                   book["shelf"] = existBook.shelf;
                 }
+              }
+              if (!("shelf" in book)) {
+                book["shelf"] = "none";
               }
             }
             setShowingBooks(res);

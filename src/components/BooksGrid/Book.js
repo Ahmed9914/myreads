@@ -1,7 +1,6 @@
 import { BookTop } from "./Book/BookTop"
 
 export const Book = ({ bookDetails, onChangeShelf }) => {
-  console.log(bookDetails);
   return (
       <div className="book">
         < BookTop

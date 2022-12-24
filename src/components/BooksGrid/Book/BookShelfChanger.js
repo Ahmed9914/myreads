@@ -16,14 +16,15 @@ export const BookShelfChanger = ({ book, onChangeShelf }) => {
                     value={choice}
                     onChange={(event) => handleChange(event.target.value)}
                     >
-                    <option value="none" disabled>
+                    <option value="move" disabled>
                     Move to...
                     </option>
                     {
                         [
                             {"currentlyReading": "Currently Reading"},
                             {"wantToRead": "Want to Read"},
-                            {"read": "Read"}
+                            {"read": "Read"},
+                            {"none": "None"}
                         ].map((value, key) => (
                             <option key={key} value={Object.keys(value)}> {Object.values(value)} </option>
                         ))
