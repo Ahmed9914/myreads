@@ -18,6 +18,19 @@ function App() {
         );
       setShowingBooks(showingBooks);
   }
+
+  const changeShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    .then(() => {
+        BooksAPI.getAll()
+        .then((res) => {
+          setBooks(res);
+        })
+      })
+      
+    console.log(books);
+    shelves = prepareShelves();
+  }
   
  useEffect(() => {
     const getBooks = async () => {
@@ -28,16 +41,16 @@ function App() {
       getBooks();
   }, []);
  
-  const prepareShelves = (books) => {
-    const shelves = {"currentlyReading": [], "wantToRead": [], "read": []};
+  const prepareShelves = () => {
+    const currentShelves = {"currentlyReading": [], "wantToRead": [], "read": []};
     for (const book of books) {
       const shelf = book["shelf"];
-      shelves[shelf].push(book);
+      currentShelves[shelf].push(book);
     }
-    return shelves;
+    return currentShelves;
   }
 
-  const shelves = prepareShelves(books);
+  let shelves = prepareShelves();
  
 
   return (
@@ -50,10 +63,12 @@ function App() {
         < SearchBooks
             showingBooks={showingBooks}
             onFilterBooks={filterBooks}
+            onChangeShelf={changeShelf}
             onSetShowSearchpage={() => setShowSearchpage(false)} />
       ) : (
         < ListShelves
             shelves={shelves}
+            onChangeShelf={changeShelf}
             onSetShowSearchpage={() => setShowSearchpage(true)} />
       )}
     </div>

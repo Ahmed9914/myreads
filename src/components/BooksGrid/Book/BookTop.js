@@ -1,6 +1,6 @@
 import { BookShelfChanger } from "../Book/BookShelfChanger";
 
-export const BookTop = ({ cover, shelf }) => {
+export const BookTop = ({ cover, book, shelf, onChangeShelf }) => {
     return (
         <div className="book-top">
             <div
@@ -12,7 +12,10 @@ export const BookTop = ({ cover, shelf }) => {
                 `url(${cover})`,
             }}
             ></div>
-            < BookShelfChanger currentShelf={shelf} />
+            < BookShelfChanger
+                book={book}
+                onChangeShelf={onChangeShelf}
+            />
         </div>
     )
 }
