@@ -18,7 +18,6 @@ function App() {
           setBooks(res);
         })
       })
-      
     // console.log(books);
     shelves = prepareShelves();
   }
